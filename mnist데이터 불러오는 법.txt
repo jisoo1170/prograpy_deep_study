@@ -1,0 +1,8 @@
+import tensorflow as tf
+import random
+# import matplotlib.pyplot as plt
+import input_data
+import numpy as np
+
+mnist = input_data.read_data_sets("/Users/jisoo/Desktop/MNIST_data", one_hot=True)
+

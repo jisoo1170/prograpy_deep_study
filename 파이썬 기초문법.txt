@@ -1,0 +1,101 @@
+/usr/local/bin
+/Library/Frameworks/Python.framework/Versions
+
+pip3 => cd /Library/Frameworks/Python.framework/Versions/3.6/bin
+pip3 install 패키지명
+
+파이썬 삭제 sudo rm -rf /Applications/Python3.6/
+
+
+
+
+1. 파일에 글쓰기
+
+	변수 = open(“  .txt”, “w”)
+		변수.write(저장내용)
+	변수.close()
+
+2. 파일 불러오기
+	1) readline() 함수
+		
+		첫줄만 출력
+		f = open(“	.txt”, ‘r’)
+		line = f.readline()
+		print(line)
+		f.close()
+
+		전체 출력
+		f = open(“	.txt”, ‘r’)
+		while true:
+			line = f.readline()
+			if not line: break
+			print(line)
+		f.close()
+
+	2)  readlines() 함수 - 각각의 줄을 요소로 갖는 리스트로 리턴
+
+		f = open(“	.txt”, ‘r’)
+		lines = f.readlines()
+		for line in lines:
+			print(line)
+		f.close()
+
+	3) read() 함수 - 파일 내용 전체를 문자열로 리턴
+		
+		f = open(“	.txt”, ‘r’)
+		data = f.read()
+		print(data)
+		f.close()
+
+3. 파일에 새로운 내용 추가
+	f = open(“	.txt”, ‘a’)
+		f.write(	)
+	f.close()
+
+4. 파일 자동으로 열고 닫기 with
+	with open(“	.txt”, ‘w/r/a’) as 변수:
+		f.write(	)
+
+5. 클래스 class 
+	class hi:
+		global a
+		def sum (self, a, b):      ——> self가 들어가면 c = hi() 한 다음 c.sum(1,2)이렇게 사용가능
+			print(a+b)
+
+6. 사용자 입력받기
+	a = input()
+	*input은 모든 것을 문자열로 취급
+	a = int(input(“입력: “))
+
+7. 모듈 (함수나 변수, 클래스 들을 모아 놓은 파일)
+	모듈을 저장한 디렉터리로 이동해서 파이썬 실행 -> import 모듈이름
+
+8. 패키지 안의 함수 실행하기
+	*echo 모듈 안에 echo_test() 함수
+
+	1) echo 모듈을 import
+		import echo
+		echo.echo_test()
+
+	2) echo 모듈이 있는 디렉터리까지
+		from sound import echo
+		echo.echo_test()
+	
+	3) echo_test()함수를 직접 import
+		from sound.echo import echo_test
+		echo_test()
+
+9. 크롤링
+https://wayhome25.github.io/python/2017/04/25/cs-27-crawling/ 참고
+
+http://rednooby.tistory.com/100 이미지 크롤링
+
+http://creativeworks.tistory.com/entry/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B5%AC%EA%B8%80-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%8D%94-%EB%A7%8C%EB%93%A4%EA%B8%B0-Making-Image-Downloader-from-google-image-by-using-Python 이미지 크롤링 다운
+
+https://github.com/admire93/python-image-crawler/blob/master/crawler.py 이미지 크롤링
+
+
+import urllib.request from bs4 import BeautifulSoup html = urllib.request.urlopen(‘http://comic.naver.com/webtoon/weekday.nhn&#8217') soup = BeautifulSoup(html) titles = soup.find_all(‘a’,’title’)
+for title in titles: print(‘title:{0:10s} link:{1:20s}\n’.format(title[‘title’], title[‘href’]))
+
+파이썬 넘파이 튜토리얼 - http://aikorea.org/cs231n/python-numpy-tutorial/

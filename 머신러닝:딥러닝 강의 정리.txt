@@ -1,0 +1,271 @@
+1. 머신러닝의 개념과 용어
+
+Explicit programming 반응형
+머신러닝은 개발자가 일일이 정하지 않고 프로그램 자체가 데이터 보고 스스로 학습해서 배우는 프로그램
+
+학습하는 방법에 따라 1. supervise / 2. unsupervised로 나뉨
+
+1. Supervise
+정해져있는 데이터를 가지고 학습(training)하는 것
+이미지를 주고 고양이인지 개인지 자동으로 알아내는 것
+레이블이 달려있는 데이터를 가지고 학습하는 것
+일반적인 타입
+예를 들자면 이미지, 이메일 스팸 필터
+Training data set : 이미 답이 정해져 있는 값 (y), 값의 특징 데이터 (x) 의 레이블을 가지고 학습 그래서 모델이 생김 
+그래서 다른 데이터가 들어오면 답을 낼 수 있는 것 (y)
+
+결과에 따라서 나눌 수 있음
+1) regression 답의 범위가 넓은 경우
+2) binary classification 답이 2개 인 경우 = 분류 ex) pass/fail
+3) multi-label classification 4-5개 중 하나
+
+2. Unsupervised
+일일이 레이블을 줄 수 없는 경우
+비슷한 단어 모아봐라,, 이런거는 데이터를 보고 스스로 학습하는 것
+
+
+
+2. Linear Regression 의 개념
+
+범위에서 예측하는 것
+예측을 어떻게 할 것인가 hypothesis(x) = wx+b로
+학습을 시키고 regression모델이 어떤 모델을 만든다. 그 후에 regression 사용한다는 것은 X를 넘겨주고 Y가 얼마인지 물어본다. 그러면 regression 모델은 Y값을 예측하는 것
+
+X : 주어지는 데이터			Y : 예측대상
+
+학습한다는 것은 가설을 세우는 것 => Linear 한 모델이 우리가 가져온 데이터에 맞을 거다 라고 가설을 세우는 것
+어떤 것이 데이터에 더 잘 맞는 선인지 찾는 것
+
+처음에  가설 H(x) = Wx + b 라고 가설을 세움
+선의 모양은 w, b에 따라 달라짐
+이렇게 세운 선들 중 어떤 선이 데이터에 가장 잘 맞을지 찾는것
+
+실제 데이터와 계산한 값이 얼마나 차이가 나는지 계산하는 것 => Cost (Loss) Function
+차만 하면 +/- 나와서 별로 안 씀
+보통 차이를 제곱 => 거리의. +/- 상관이 없음, 차이를 양수로 표현, 차이가 크면 더 티가 남
+cost(w, b) = 그 차이의 제곱을 다 더해서 데이터 개수로 나누는 것
+h(x) = wx+b니까 대입하면 결국 cost(w,b)가 되는 것
+
+Cost가 가장 작은 값을 가지게 하는 w, b를 구하는 것이 linear regression의 학습의 목표
+ 
+
+
+3. Linear Regression cost 함수 최소화
+
+
+Cost 함수를 어떻게 최소화해서 최종적으로  linear regression 학습을 완성하는지
+cost함수는 예측 값과 실제 값의 차이를 구하는 것
+예측 값과 실제 값의 차이의 제곱을 한 것의 평균 값을 구하는 것
+예측한 값과 비슷하면 값이 작아지고 다르면 커짐
+
+“gradient(경사) descent algorithm” 주어진 cost 함수를 최소화하는데 사용됨
+그래프의 경사도를 따라서 0이 될 때가지 움직이는 것. W가 계속 바뀜
+항상 최저점에 도달할 수 있는 것이 이 알고리즘의 장점
+
+convex function => 어느 지점에서 시작하든 최솟값은 하나
+이 함수 형태이면 gradient descent algorithm 이 항상 값을 찾을 수 있음
+
+
+
+4. 여러개의 입력(feature)의 Linear Regression
+
+1개의 input variable 일 때 linear regression 세우기 위해서는
+1)hypothesis 가설 h(x) = Wx + b ///w,b 학습
+2) cost function 기울기 계산 정하기 cost(w,b) = (예측값 - 실제값)제곱 한 것들 합
+3) gradient descent algotrithm 	u모양 함수
+
+여러개 일 때는?
+H(x1,x2,x3) = w1x1 + w2x2 + w3x3
+개수가 늘어날 수록 항이 늘어나니까 Matrix를 사용한다 => 수열의 곱 사용 H(X) = XW 
+꼭 X가 먼저 나와야 함
+
+x 많을 수록 예측 정확도 올라감
+
+instance 많아도 각각 계산이 아닌 한번에 계산 가능
+[3, 2] * [2, 4] = [3,4]
+[none(원하는 만큼 여러개, 3] * [3, 1] = [n(데이터 개수), 1(=출력개수)]
+
+값 1개(쌍)를 instance 라고 함
+
+
+
+5. Logistic (Regression) Classification - 정확도 높은 알고리즘 소개
+
+1) Binary Classification 두개 중에 하나 선택
+0 또는 1 로 encoding
+g(z) 는 항상 0~1 사이  함수 모양에서 x축이 z  y축이 g(z) => logistic function
+z = wx
+h(x) = g(z) 전 regression 함수와 비교 했을 때
+
+예측이 틀리면 무한대에 가까워짐 그래프가 U자 모양이니까, 예측이 맞으면 0
+=> 예측이 맞을수록 값이 작아지고 틀릴수록 커짐
+C(H(x),y) = -ylog(H(x)) - (1 - y)log(1 - H(x))
+y가 1이면 - log(H(x))가 됨
+y가 0이면 c = -l * log(1 - H(x))
+
+그 다음은 cos함수를 최소화, 기울기 구하기 위해 미분 
+미분한 값에 얼만큼 움직일지 곱하고 원래 값에서 빼주면 됨
+
+코스트함수를 텐서플로우에 넣어주고
+미분하고 얼만큼 움직일 지는 GradientDescentOptimizer 라이브러리 이용해서 하면 됨
+
+학습 과정은 cost(W)에서 cost함수를 작게하는 W를 구하는 것
+
+
+
+6. Softmax Regression (Multinomial Logistic Regression)
+
+데이터 구분을 학습하는 것
+
+-
+y. => prediction 예측 값 y hat // y위에 - 있는 것
+y => real date
+
+여러 개를 구분 할 때는 행렬로 만들어서 계산하면 하나로 쉽게 계산이 가능
+예측 값이 이제는 답 여러개로 값이 나옴 => sigmoid로 0~1 사이 값으로 만들고 싶다. 그리고 그 값들을 모두 더하면 1이 나오며 좋겠다
+이것을 해주기 위함이 softmax
+여러개 예측할 때 좋음
+
+그 다음 ‘	One-Hot-Ecoding’ 으로 제일 큰 값을 1으로 만들어주고 나머지는 0으로 만들어서 1을 선택하게 한다.
+
+Cross-entropy cost function
+cost함수 설계 해야함 => D(S,L) = 시그마i Li * -log(Si)
+S = H(x) 즉 예측값,  L은 Y 즉 실제 값
+
+-log(y) => y는 0~1 0이면 무한대 가깝게, 1이면 0이 되는 함수
+예측 틀리면 아주 큰 값, 예측 맞으면 0이 나오게 해줌
+
+여러개의 트레이닝 set 있으면
+ cost(loss) function = 1/n * 시그마 D(S(WX + b), L)
+D => distance 거리/차이
+전체의 거리/차이를 구한다음 그 평균을 구해주면 됨
+
+그 다음 최소값인 W를 찾아줌 => Gradient descsent 알고리즘 이용
+
+
+
+
+7. ML의 실용과 몇가지 팁
+
+
+Normalized ; 데이터가 항상 정해진 범위 안에 들어오게 하는 것
+standardization하는 방법 : x_std[:,0] = (x[:,0] - x[:, 0].mean()) / x[:, 0].std()
+
+1) Learning rate 잘 정하는게 중요
+너무 크면 overshooting 튕겨 나가는 현상 (발산) / 너무 작으면 시간이 너무 오래걸림
+
+2) Data preprocessing 데이터 선처리
+데이터 값에 차이가 너무 심하면 => zero-centered data 데이터 중심을 0에 두는 것 / normalized data 값의 범위가 항상 어떤 범위에 들어가도록 하는 것
+하는 방법은 standardization => x_std[:,0] = (x[:,0] - x[:,0].mean()) / x[:,0].std())
+
+3) Overfitting 학습 데이터에만 너무 잘 맞는 모델을 만들면 실제 데이터와 잘 안맞을 수 있음. 일반적인 모델을 만들어야 함
+줄이는 방법은 
+	training set data가 많을 수록 좋음
+	features의 개수를 줄이는 방법
+	Regularization 일반화 시킨다 weight을 너무 큰 값을 가지지 말자 경계선을 일자로? cost 뒤에 12reg를 더한다
+12reg = regularization strength * tf.reduce_sum(tf.square(W))
+Regularization strength 는 어떤 상수 중요하게 생각하면 1 안중요하면 0 그냥 보통이다 그러면 0.001 이런식으로,,
+
+
+4) 머신러닝 모델이 얼마나 잘 돌아가는가?
+데이터를 가지고 학습을 시키는데 어떻게 평가할까
+데이터 70%는 training set 	나머지는 test set
+training set으로 훈련시키고 test set 넣어서 확인 나온 값과 정답을 비교해서 평가
+trainig set 을 또 validation set 으로 나누기도 함  튜닝, 모의 test 에 사용
+데이터가 많으면 online learning 방법 사용. 몇개씩 잘라서 학습하고 나눠서 학습할 때는 그 전의 학습결과가 남아있어야 함
+
+
+
+
+8. 딥러닝의 기본 개념과 문제, 그리고 해결
+
+뇌의 작동을 딴 것이 activation functions
+x라는 값이 w(weight)만큼 들어오고 (xW) 그것을 모두 더한 다음, bios를 더해준다. 그 다음 그 값이 어떤 값이 넘어가면 신호1, 안넘어가면 0
+ 
+Convolutional Neural Networks 
+보는 것에 따라 다른 뉴런이 반응한다 
+그림을 잘라서 보내고 나중에 합쳐서 인식
+
+
+
+
+9. Neural Network 1 : XOR 문제와 학습방법
+
+
+nn으로 xor이 가능한가 -> 여러번 겹쳐서 하면 가능하다
+
+k = tf.sigmoid(tf.matmul(x,w1) + b1)
+hypothesis = tf.sigmoid(tf.matmul(k, w2) + b2)
+총 연산 3번인데 처음 k 에는 행렬로 해서 2번을 하는 거고 나온 결과값 k 를 입력으로 또 연산
+
+어떻게 자동으로 w, b 값을 줄 것인지 => gradientDescient 알고리즘
+각 입력이 y에 미치는 영향이 어느정도인지 알아야 w 결정하는데 너무 커서 어렵다
+
+Back propagation (chain rule) => 예측값과 실제 값의 차이를 뒤에서부터 앞으로 보내서 결정하겠다
+
+F = wx + b, g.= wx, f = g+b
+x, w, b가 얼만큼 f에 영향을 미치는 지는 f를 x/w/b로 미분을 해보면 알 수 있다 = 미분 값이다
+
+f(g(x)) 복합함수 미분은 밖을 먼저 미분하고 안으로 들어간다 chain rule
+g로 먼저 미분한 다음 x로 미분한다
+f     f    g
+- = - * —
+x    g    x
+ 
+어떤 입력 값을 미분한 값은 그 입력 값이 바뀌면 미분 배수 만큼 결과에 영향을 끼친다는 의미
+
+Back propagtion 은 체인룰을 이용
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11. CNN
+
+Conv,relu => cone,relu =>poop 이런식으로 쌓을 수 있음 방식은 자기 마음
+
+하나의 이미지를 여러개로 자르는데 그 자른 것을 convolutional layer (conv)
+
+처음에 이미지를 입력으로 받는다
+이미지를 filter 로 잘라서 처리 filter 크기는 우리가 정하는 것
+filter는 궁극저으로 한 값을 만들어 냄
+어떻게 한개의 값으로 만들어낼까? wx+b를 사용한다
+각 비트를 저 식에 적용
+여기서 weight는 filter를 어떤 숫자로 만들어낼지 결정하는 필터의 값
+relu를 붙여도 됨
+
+filter를 옆으로 움직이면서 값을 가져옴
+같은 weight로 전체 이미지를 훑는다
+
+filter를 몇칸 씩 움직이는 지는 stride
+stride가 1이면 1칸씩 이동한다
+
+출력 값은 전체 이미지가 n*n 필터 사이즈는 f*f라고 하면
+(N-f) / stride + 1 로 계산할 수 있다
+
+그러면 아웃풋이 계속 작아진다. 그래서 padding이라는 개념사용
+가장자리에 0으로 두른다 => 모서리임을 알려주고 이미지 사이즈가 급격히 작아지는 것을 막아줌
+7*7 => 패딩하면 9*9
+
+하나의 이미지를 같은 weight 값으로 처리하고 다음 filter 를 적용할 때 weight 값을 변경 하면서 나온 output을 쌓는다
+ 그 다음 convolution layer에 적용하면 결과는 => (?,?,필터몇개썼는지) 
+?는 필터사이즈에 따라서 결정
+
+Pooling layer (sampling)
+쌓인 아웃풋에서 한 개의 레이어(하나의 아웃풋)를 뽑아내고 그 사이즈를 작게 하는 것
+그 다음 다시 쌓음
+
+사이즈를 작게 할 때 쓰이는 방법은 max pooling
+가장 큰 값을 선택하는 방식
+이 사이즈도 필터사이즈와 stride에 따라서 결정 됨 = 우리가 결정
+
+마지막에 pooling을 해줌 그것은 일반적인 softmax에 넣어서 여러 개의 레이블 중 선택하게 됨
