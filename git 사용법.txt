@@ -1,6 +1,6 @@
 1. git 공유할 때 
-git config —global user.name “miso”
-git config — global user.email “jisoo1170@naver.com”
+git config —global user.name “이름”
+git config — global user.email “이메일”
 git clone 공유할 주소
 
 2. 업로드
