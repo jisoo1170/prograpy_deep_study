@@ -1,5 +1,9 @@
-http://yongyong-e.tistory.com/25?category=763033
 
 https://github.com/tensorflow/models/tree/master/research/inception/inception/data
+데이터 다운 주소
+
+
+그 후 참고
+http://yongyong-e.tistory.com/25?category=763033
 
 http://euhyeji.blogspot.kr/2017/05/tf-11-slim-31-caltech-tfrecord.html
