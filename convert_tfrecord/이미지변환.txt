@@ -1,3 +1,5 @@
 http://yongyong-e.tistory.com/25?category=763033
 
 https://github.com/tensorflow/models/tree/master/research/inception/inception/data
+
+http://euhyeji.blogspot.kr/2017/05/tf-11-slim-31-caltech-tfrecord.html
